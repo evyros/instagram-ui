@@ -12,4 +12,15 @@ async function register(user) {
 	return res.json();
 }
 
-export { register };
+async function login({username, password}) {
+	const res = await fetch(config.apiUrl + '/login', {
+		method: 'POST',
+		body: JSON.stringify({username, password}),
+		headers: {
+			'Content-Type': 'application/json'
+		}
+	})
+	return res.json();
+}
+
+export { register, login };

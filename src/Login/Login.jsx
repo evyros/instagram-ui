@@ -1,17 +1,21 @@
 import React, { useContext } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import {loginScheme} from './loginScheme'
-import { login } from '../services/user.service';
+import { login, me } from '../services/user.service';
 import { UserContext } from '../App';
+import { useHistory } from 'react-router-dom';
 
 function Login() {
-    const {loggedIn, setLoggedIn} = useContext(UserContext);
-    console.log(loggedIn);
+    const history = useHistory();
+    const { setUser } = useContext(UserContext);
+
     async function submit(values) {
         try {
             const { token } = await login(values);
-            setLoggedIn(true);
-            localStorage.setItem('loggedIn', token);
+            const loggedUser = await me();
+            setUser(loggedUser);
+            localStorage.setItem('token', token);
+            history.push('/');
         } catch (e) {
             console.log(e);
         }

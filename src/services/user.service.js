@@ -23,4 +23,19 @@ async function login({username, password}) {
 	return res.json();
 }
 
-export { register, login };
+async function me() {
+	const token = localStorage.getItem('token');
+	if (!token) {
+		return {};
+	}
+	const res = await fetch(config.apiUrl + '/user/me', {
+		method: 'GET',
+		headers: {
+			'Content-Type': 'application/json',
+			Authorization: token
+		}
+	});
+	return res.json();
+}
+
+export { register, login, me };

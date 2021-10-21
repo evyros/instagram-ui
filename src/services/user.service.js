@@ -32,7 +32,7 @@ async function me() {
 		method: 'GET',
 		headers: {
 			'Content-Type': 'application/json',
-			Authorization: token
+			'Authorization': token
 		}
 	});
 	return res.json();

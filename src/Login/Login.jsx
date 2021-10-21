@@ -12,9 +12,9 @@ function Login() {
     async function submit(values) {
         try {
             const { token } = await login(values);
+            localStorage.setItem('token', token);
             const loggedUser = await me();
             setUser(loggedUser);
-            localStorage.setItem('token', token);
             history.push('/');
         } catch (e) {
             console.log(e);

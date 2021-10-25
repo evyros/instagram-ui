@@ -1,12 +1,17 @@
 import config from '../config/index';
 
 async function create(post) {
+    console.log(post);
+
+    const form = new FormData();
+    form.append('body', post.body);
+    form.append('image', post.image);
+
     const token = localStorage.getItem("token");
     const res = await fetch(config.apiUrl + '/post', {
         method: 'POST',
-        body: JSON.stringify(post),
+        body: form,
         headers: {
-            'Content-Type': 'application/json',
             'Authorization': token
         }
     });

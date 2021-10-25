@@ -2,9 +2,8 @@ import React, { useMemo } from 'react';
 import Avatar from '../Avatar/Avatar';
 import './Post.scss';
 import { Link } from 'react-router-dom';
-// import PostDate from './PostDate/PostDate';
+import config from '../../config/index';
 
-const imageSrc = "https://images.unsplash.com/photo-1634324040880-63dbf9a4e5ac?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=687&q=80"
 const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
 function Post({ data }) {
@@ -31,7 +30,7 @@ function Post({ data }) {
 				</header>
 				<div className="Post__image">
 					<Link to={'/post/' + data._id}>
-						<img src={imageSrc} className="Post__image" alt="" />
+						<img src={config.apiUrl + '/' + data.image} className="Post__image" alt="" />
 					</Link>
 				</div>
 				<div className="Post__content">

@@ -7,9 +7,9 @@ function HeaderProfile() {
 	const { user } = useContext(UserContext);
 
 	return (
-		<div>
+		<div className="HeaderProfile">
 			<Avatar image="https://cdn.pixabay.com/photo/2017/06/13/12/53/profile-2398782_1280.png" />
-			{ user.username }
+			<span className="HeaderProfile__username">{ user.username }</span>
 		</div>
 	);
 }

@@ -3,7 +3,9 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import {loginScheme} from './loginScheme'
 import { login, me } from '../services/user.service';
 import { UserContext } from '../App';
-import { useHistory } from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
+import intro from './intro.png';
+import './Login.scss';
 
 function Login() {
     const history = useHistory();
@@ -21,32 +23,38 @@ function Login() {
         }
     }
     return (
-        <div className="Register">
-            <h1 className="Register__title">Sign In</h1>
-            <Formik 
-                initialValues={{ username: '', password: '' }}
-                validationSchema={loginScheme}
-                onSubmit={submit}>
-                <Form>
-                    <div className="form-group">
-                        <label htmlFor="username">Username:</label>
-                        <Field id="username" name="username" placeholder="Username" />
-                        <div className="error">
-                            <ErrorMessage name="username" />
+        <div className="Login container">
+            <div>
+                <h1 className="Login__title">Sign In</h1>
+                <Formik
+                    initialValues={{ username: '', password: '' }}
+                    validationSchema={loginScheme}
+                    onSubmit={submit}>
+                    <Form>
+                        <div className="form-group">
+                            <label htmlFor="username">Username:</label>
+                            <Field id="username" name="username" placeholder="Username" />
+                            <div className="error">
+                                <ErrorMessage name="username" />
+                            </div>
                         </div>
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="Password">Password:</label>
-                        <Field type="password" id="password" name="password" placeholder="Password" />
-                        <div className="error">
-                            <ErrorMessage name="password" />
+                        <div className="form-group">
+                            <label htmlFor="Password">Password:</label>
+                            <Field type="password" id="password" name="password" placeholder="Password" />
+                            <div className="error">
+                                <ErrorMessage name="password" />
+                            </div>
                         </div>
-                    </div>
-                    <div className="form-group">
-                        <button type="submit" className="btn-register">Sign In</button>
-                    </div>
-                </Form>
-            </Formik>
+                        <div className="form-group">
+                            <button type="submit" className="btn-login">Sign In</button>
+                        </div>
+                    </Form>
+                </Formik>
+                <div className="Login__registration-link">
+                    Don't have an account? <Link to="/register">Register</Link>
+                </div>
+            </div>
+            <img src={intro} className="Login__intro-image" alt="Instagram" />
         </div>
     )
 

@@ -24,7 +24,6 @@ function Post({ data }) {
 						</Link>
 					</div>
 					<div className="Post__date">
-						{/* <PostDate date={data.createdAt} /> */}
                         {createdAt}
 					</div>
 				</header>

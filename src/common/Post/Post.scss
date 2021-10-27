@@ -1,18 +1,12 @@
 
 .Post_wrapper {
     width: 100%;
-
-    @media screen and (min-width: 768px){
-        width: 33%;
-    }
+    max-width: 768px;
 }
 
 .Post {
     height: 600px;
     width: 100%;
-    @media screen and (min-width: 768px){
-        width: 500px;
-    }
     border: 1px solid #f1f1f1;
     margin: 15px 0;
     border-radius: 3px;
@@ -36,7 +30,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        height: 400px;
+        height: 67%;
         overflow: hidden;
         a {
             width: 100%;
@@ -84,5 +78,9 @@
                 transform: scale(1.1);
             }
         }
+    }
+
+    .icon {
+        color: red;
     }
 }

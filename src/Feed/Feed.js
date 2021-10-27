@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getFeed } from '../services/post.service';
 import Post from './../common/Post/Post';
-
+import './Feed.scss';
 function Feed() {
 	const [posts, setPosts] = useState([]);
 
@@ -18,8 +18,10 @@ function Feed() {
 	}, []);
 
 	return (
-		<div style={{ display: 'flex', justifyContent: 'center' }}>
-			{posts.map((post) => <Post data={post} /> )}
+		<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }} className="feed">
+			<div className="feed__wrapper">
+				{posts.map((post) => <Post data={post} />)}
+			</div>
 		</div>
 	);
 }

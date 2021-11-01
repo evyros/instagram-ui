@@ -20,7 +20,7 @@ function Feed() {
 	return (
 		<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }} className="feed">
 			<div className="feed__wrapper">
-				{posts.map((post) => <Post data={post} />)}
+				{posts.map((post) => <Post data={post} key={post._id} />)}
 			</div>
 		</div>
 	);

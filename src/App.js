@@ -8,6 +8,7 @@ import Header from './Header/Header';
 import { me } from './services/user.service';
 import PostCreate from './PostCreate/PostCreate';
 import Profile from './Profile/Profile';
+import Search from './Search/Search';
 export const UserContext = createContext();
 
 function App() {
@@ -47,6 +48,9 @@ function App() {
                     </Route>
                     <Route path="/post/create">
                         <PostCreate />
+                    </Route>
+                    <Route path="/search">
+                        <Search />
                     </Route>
                     <Route exact path="/">
                         <Feed />

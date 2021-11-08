@@ -4,6 +4,7 @@ import './Post.scss';
 import { Link } from 'react-router-dom';
 import config from '../../config/index';
 import PostDate from './PostDate/PostDate';
+import PostLike from './PostLike/PostLike';
 
 
 function Post({ data }) {
@@ -27,6 +28,9 @@ function Post({ data }) {
 					<Link to={'/post/' + data._id}>
 						<img src={config.apiUrl + '/' + data.image} className="Post__image" alt="" />
 					</Link>
+				</div>
+				<div>
+					<PostLike postId={data._id} likes={data.likes} />
 				</div>
 				<div className="Post__content">
 					<h1 className="Post__description">{data.body}</h1>

@@ -8,7 +8,6 @@ import PostLike from './PostLike/PostLike';
 
 
 function Post({ data }) {
-
 	return (
 		<div className="Post_wrapper">
 			<article className="Post">

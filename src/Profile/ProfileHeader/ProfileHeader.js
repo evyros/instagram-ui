@@ -1,10 +1,34 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
+import { UserContext } from '../../App';
 import Avatar from '../../common/Avatar/Avatar';
-import { getUser } from '../../services/user.service';
+import { follow, getUser, unfollow, me as getMyself } from '../../services/user.service';
 import './ProfileHeader.scss';
 
 function ProfileHeader({ username, postNum }) {
 	const [user, setUser] = useState({});
+	const { user: me, setUser: setMe } = useContext(UserContext);
+
+	const isFollowing = useMemo(() => {
+		return me?.following?.includes(user._id)
+	}, [user, me]);
+
+	const handleFollow = () => {
+		follow(username).then(() => {
+			getMyself()
+            .then(loggedUser => {
+                setMe(loggedUser);
+            })
+		})
+	}
+
+	const handleUnfollow = useCallback(() => {
+		unfollow(username).then(() => {
+			getMyself()
+            .then(loggedUser => {
+                setMe(loggedUser);
+            })
+		});
+	}, [username, setMe]);
 
 	useEffect(() => {
 		async function initUser() {
@@ -20,6 +44,9 @@ function ProfileHeader({ username, postNum }) {
 			<div>
 				<h2>{user.username}</h2>
 				<p>{postNum} posts</p>
+				{me.username !== username ? isFollowing 
+				? <button onClick={handleUnfollow}>Unfollow</button> 
+				: <button onClick={handleFollow}>Follow</button> : null}
 			</div>
 		</div>
 	);

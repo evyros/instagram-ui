@@ -64,4 +64,25 @@ async function search(query) {
 	return res.json();
 }
 
-export { register, login, me, getUser, search };
+async function follow(username) {
+	return fetch(config.apiUrl + '/user/' + username + '/follow', {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+			'Authorization': localStorage.getItem('token')
+		}
+	});
+}
+
+async function unfollow(username) {
+	return fetch(config.apiUrl + '/user/' + username + '/unfollow', {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+			'Authorization': localStorage.getItem('token')
+		}
+	});
+}
+
+
+export { register, login, me, getUser, search, unfollow, follow };

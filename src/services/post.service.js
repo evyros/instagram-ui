@@ -53,4 +53,13 @@ function postUnlike(postId) {
     });
 }
 
-export { create, getFeed, getPosts, postLike, postUnlike }
+async function getOne(postId) {
+    const res = await fetch(config.apiUrl + '/post/' + postId, {
+        headers: {
+            'Authorization': localStorage.getItem('token')
+        }
+    });
+    return res.json();
+}
+
+export { create, getFeed, getPosts, postLike, postUnlike, getOne }
